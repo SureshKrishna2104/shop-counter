@@ -55,3 +55,16 @@ export const store = (g.__store ??= {
   payments: [],
   attempts: new Map(),
 });
+
+
+const globalWithCounter = g as { __store?: Store; __catalogReads?: number };
+globalWithCounter.__catalogReads ??= 0;
+
+export function fetchLiveCatalog() {
+  globalWithCounter.__catalogReads! += 1;
+  return store.products;
+}
+
+export function getReadCount() {
+  return globalWithCounter.__catalogReads || 0;
+}
