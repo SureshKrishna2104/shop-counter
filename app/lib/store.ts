@@ -34,10 +34,18 @@ export type Attempt = {
   amountCents: number;
 };
 
+export type Order = {
+  orderId: string;
+  attemptId: string;
+  lines: AttemptLine[];
+  amountCents: number;
+};
+
 type Store = {
   products: Product[];
   payments: Payment[];
   attempts: Map<string, Attempt>;
+  orders: Map<string, Order>;
 };
 
 // Next.js development mode clears module state on save.
@@ -54,6 +62,7 @@ export const store: Store = (g.__store ??= {
   ],
   payments: [],
   attempts: new Map(),
+  orders: new Map()
 });
 
 
