@@ -10,16 +10,12 @@ async function ShopContent({
 }) {
   const { q, sort: sortParam } = await searchParams;
 
-  // 1. Fetch cached catalogue
   let items = await getCatalog();
-
-  // 2. Filter by Search (?q=)
   const query = q?.toLowerCase() || '';
   if (query) {
     items = items.filter((item) => item.name.toLowerCase().includes(query));
   }
 
-  // 3. Sort (?sort=)
   const sort = sortParam || 'name';
   items = [...items].sort((a, b) => {
     if (sort === 'price-asc') return a.priceCents - b.priceCents;

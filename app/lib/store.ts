@@ -44,7 +44,7 @@ type Store = {
 // Attaching the store to globalThis ensures the memory reference persists.
 const g = globalThis as { __store?: Store };
 
-export const store = (g.__store ??= {
+export const store: Store = (g.__store ??= {
   products: [
     { sku: "lamp", name: "Maple lamp", priceCents: 8000, remaining: 5, extras: [] },
     { sku: "stool", name: "Cedar stool", priceCents: 12000, remaining: 2, extras: [{ code: "cushion", name: "Cushion", priceCents: 2500 }] },
